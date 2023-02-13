@@ -1,16 +1,24 @@
 //Dependencies
 const express = require('express');
 const fs = require('fs');
-const cors = require('cors');
+// const cors = require('cors');
 const path = require('path');
 
 
 //initialize express
 const app = express();
-const port = process.env.PORT || 3001;
+
+//listens for port
+app.listen (3001);
+console.log('App listening on port 3001');
+
+
+
+
+//Listenes for requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
 
 //Middleware
 app.use(express.static('./develop/public'));
@@ -46,5 +54,4 @@ app.post('/api/notes', (req, res) => {
             res.json(newNote);
         })})});
 
-        //listen for requests
-        app.listen(port, () => console.log(`App listening on port ${port}!`));
+        
