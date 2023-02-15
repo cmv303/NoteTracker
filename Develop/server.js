@@ -1,57 +1,22 @@
-//Dependencies
+//Connects all files
 const express = require('express');
-const fs = require('fs');
-// const cors = require('cors');
-const path = require('path');
-
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 //initialize express
 const app = express();
+const PORT = process.env.port || 3001;
 
-//listens for port
-app.listen (3001);
-console.log('App listening on port 3001');
-
-
-
+//Add static middleware for serving assets in the public folder
+app.use(express.static('public'));
 
 //Listenes for requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors());
-
-//Middleware
-app.use(express.static('./develop/public'));
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 
-
-
-//Routes
-app.get(['/', '/notes', '/api/notes'], (req, res) => {
-    switch(req.path) {
-        case '/':
-            res.sendFile(path.join(__dirname, 'index.html'));
-            break;
-        case '/notes':
-            res.sendFile(path.join(__dirname, 'notes.html'));
-            break;
-        case '/api/notes':
-            res.sendFile(path.join(__dirname, 'db/db.json'));
-            break;
-        default:
-            res.sendStatus(404);
-    }
-});
-
-app.post('/api/notes', (req, res) => {
-    const newNote = req.body;
-    fs.readFile(path.join(__dirname, 'db/db.json'), 'utf8', (err, data) => {
-        if (err) throw err;
-        const notes = JSON.parse(data);
-        notes.push(newNote);
-        fs.writeFile(path.join(__dirname, 'db/db.json'), JSON.stringify(notes), (err) => {
-            if (err) throw err;
-            res.json(newNote);
-        })})});
-
-        
+//listens for port
+app.listen(PORT, () =>
+console.log(`App listening at http://localhost:${PORT}`));
