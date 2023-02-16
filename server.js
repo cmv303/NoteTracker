@@ -5,7 +5,7 @@ const htmlRoutes = require("./routes/htmlRoutes");
 
 //initialize express
 const app = express();
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 //Add static middleware for serving assets in the public folder
 app.use(express.static("public"));
