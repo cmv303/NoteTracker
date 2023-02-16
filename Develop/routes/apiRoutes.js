@@ -3,7 +3,7 @@ const router = require('express').Router();
 const notes = require('../db/notes');
 
 router.get('/notes',(req, res) => {
-    notes.getAllNotes()
+    notes.retrieveAllNotes()
     .then((notes) => {
         return res.json(notes)
     })
