@@ -10,8 +10,7 @@ This noteTracker will allow users to easily add and delete notes, all while bein
 
 ## Demo
 
-![Alt text "image of deployed page for noteTracker"]
-<img width="1348" alt="Screenshot 2023-02-16 at 6 24 15 PM" src="https://user-images.githubusercontent.com/115678318/219511738-ce9b7e48-e622-4426-bcd4-eb101e57dcef.png">
+<img width="1348" alt="image of deployed page for noteTracker" src="https://user-images.githubusercontent.com/115678318/219511738-ce9b7e48-e622-4426-bcd4-eb101e57dcef.png">
 
 
 ## Installation
